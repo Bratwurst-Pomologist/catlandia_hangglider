@@ -53,6 +53,10 @@
 -- 2022-05-16
 -- Add Z-index to theoretically be behind hotbar and practically behind other HUDs
 
+-- Modifications by 2BW
+-- 2025-02-14
+-- 
+
 local HUD_Overlay = true --show glider struts as overlay on HUD
 local debug = false --show debug info in top-center of hud
 local moveModelUp = false
@@ -183,10 +187,10 @@ minetest.register_entity("hangglider:glider", {
 	visual = "mesh",
 	visual_size = {x = 12, y = 12},
 	collisionbox = {0,0,0,0,0,0},
-	mesh = "glider.obj",
+	mesh = "glider.obj", --mobs_chicken.b3d
 	immortal = true,
 	static_save = false,
-	textures = {"wool_white.png","default_wood.png"},
+	textures = {"wool_white.png","default_wood.png"}, --mobs_chicken.png
 	on_step = function(self, dtime)
 		local canExist = false
 		if self.object:get_attach() then
