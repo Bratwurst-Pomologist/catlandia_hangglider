@@ -57,7 +57,7 @@
 -- 2025-02-14
 -- 
 
-local HUD_Overlay = true --show glider struts as overlay on HUD
+ local HUD_Overlay = true --show glider struts as overlay on HUD
 local debug = false --show debug info in top-center of hud
 local moveModelUp = false
 if tonumber(string.sub(minetest.get_version().string, 1, 1)) and
@@ -149,13 +149,13 @@ hangglider.can_fly = function (pname, pos)
 	return true
 end
 
-hangglider.shot_sound = function (pos)
+--[[hangglider.shot_sound = function (pos)
 	minetest.sound_play("hangglider_flak_shot", {
 		pos = pos,
 		max_hear_distance = 30,
 		gain = 10.0,
 	})
-end
+end ]]
 
 local physics_attrs = {"jump", "speed", "gravity"}
 local function apply_physics_override(player, overrides)
@@ -183,14 +183,14 @@ local function remove_physics_override(player, overrides)
 end
 
 local step_v
-minetest.register_entity("hangglider:glider", {
+minetest.register_entity(":hangglider:glider", {
 	visual = "mesh",
 	visual_size = {x = 12, y = 12},
 	collisionbox = {0,0,0,0,0,0},
-	mesh = "glider.obj", --mobs_chicken.b3d
+	mesh = "mobs_chicken.b3d", --mobs_chicken.b3d
 	immortal = true,
 	static_save = false,
-	textures = {"wool_white.png","default_wood.png"}, --mobs_chicken.png
+	textures = {"mobs_chicken.png"}, --mobs_chicken.png
 	on_step = function(self, dtime)
 		local canExist = false
 		if self.object:get_attach() then
@@ -223,14 +223,14 @@ minetest.register_entity("hangglider:glider", {
 				if not hangglider.can_fly(pname,pos) then
 				    if not self.warned then -- warning shot
 						self.warned = 0
-						hangglider.shot_sound(pos)
+						--hangglider.shot_sound(pos)
 						minetest.chat_send_player(pname, "Protected area! You will be shot down in two seconds by anti-aircraft guns!")
 				    end
 				    self.warned = self.warned + dtime
 				    if self.warned > 2 then -- shoot down
 						player:set_hp(1)
 						player:get_inventory():remove_item("main", ItemStack("hangglider:hangglider"))
-						hangglider.shot_sound(pos)
+						--hangglider.shot_sound(pos)
 						canExist = false
 				    end
 				end
@@ -298,7 +298,7 @@ minetest.register_on_leaveplayer(function(player)
 	--hangglider.airbreak[pname] = nil
 end)
 
-minetest.register_tool("hangglider:hangglider", {
+minetest.register_tool(":hangglider:hangglider", {
 	description = "Glider",
 	inventory_image = "glider_item.png",
 	stack_max=1,
@@ -310,8 +310,8 @@ minetest.register_tool("hangglider:hangglider", {
 		local pos = player:get_pos()
 		local pname = player:get_player_name()
 		if not hangglider.use[pname] then --Equip
-			minetest.sound_play("bedsheet", {pos=pos, max_hear_distance = 8, gain = 1.0})
-			if HUD_Overlay then player:hud_change(hangglider.id[pname], "text", "glider_struts.png") end
+			--minetest.sound_play("bedsheet", {pos=pos, max_hear_distance = 8, gain = 1.0})
+			--[[if HUD_Overlay then player:hud_change(hangglider.id[pname], "text", "glider_struts.png") end]]
 			local airbreak = false
 			--[[if vel < -1.5 then  -- engage mid-air, falling fast, so stop but ramp velocity more quickly
 				--hangglider.airbreak[pname] = true
