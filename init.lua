@@ -311,7 +311,7 @@ minetest.register_tool(":hangglider:hangglider", {
 		local pname = player:get_player_name()
 		if not hangglider.use[pname] then --Equip
 			--minetest.sound_play("bedsheet", {pos=pos, max_hear_distance = 8, gain = 1.0})
-			--[[if HUD_Overlay then player:hud_change(hangglider.id[pname], "text", "glider_struts.png") end]]
+			if HUD_Overlay then player:hud_change(hangglider.id[pname], "text") end
 			local airbreak = false
 			--[[if vel < -1.5 then  -- engage mid-air, falling fast, so stop but ramp velocity more quickly
 				--hangglider.airbreak[pname] = true
@@ -325,7 +325,7 @@ minetest.register_tool(":hangglider:hangglider", {
 			end]]
 			if not airbreak then
 				if moveModelUp then
-					minetest.add_entity(pos, "hangglider:glider"):set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+					minetest.add_entity(pos, "hangglider:glider"):set_attach(player, "", {x=0,y=18,z=0}, {x=0,y=0,z=0})
 				else
 					minetest.add_entity(pos, "hangglider:glider"):set_attach(player, "", {x=0,y=0,z=0}, {x=0,y=0,z=0})
 				end
