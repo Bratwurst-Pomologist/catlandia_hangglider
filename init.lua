@@ -185,7 +185,7 @@ end
 local step_v
 minetest.register_entity(":hangglider:glider", {
 	visual = "mesh",
-	visual_size = {x = 12, y = 12},
+	visual_size = {x = 8, y = 8},
 	collisionbox = {0,0,0,0,0,0},
 	mesh = "mobs_chicken.b3d", --mobs_chicken.b3d
 	immortal = true,
@@ -325,7 +325,7 @@ minetest.register_tool(":hangglider:hangglider", {
 			end]]
 			if not airbreak then
 				if moveModelUp then
-					minetest.add_entity(pos, "hangglider:glider"):set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+					minetest.add_entity(pos, "hangglider:glider"):set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
 				else
 					minetest.add_entity(pos, "hangglider:glider"):set_attach(player, "", {x=0,y=0,z=0}, {x=0,y=0,z=0})
 				end
