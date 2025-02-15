@@ -300,7 +300,7 @@ end)
 
 minetest.register_tool(":hangglider:hangglider", {
 	description = "Glider",
-	inventory_image = "glider_item.png",
+	inventory_image = "mobs_chicken_inv.png",
 	stack_max=1,
 	on_use = function(itemstack, player)
 		if not player or player.is_fake_player then
